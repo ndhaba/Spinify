@@ -1,8 +1,17 @@
-# Spinify
+<h1 align='center'>
+  <img src="./static/favicon.webp">
+  <br>
+  Spinify
+</h1>
 
-Random album picker
+<p align='center'>
+  <i>Random album picker</i>
+</p>
 
-This web app allows you to pick out any amount of music releases and choose one at random. Music data is sourced from [Last.fm](https://www.last.fm/).
+<p align='center'>
+  This web app allows you to pick out any amount of music releases and choose one at random.<br>
+  Music data is sourced from <a href="https://www.last.fm/">Last.fm</a>.
+</p>
 
 ## Setup Requirements
 
@@ -25,3 +34,20 @@ npm run build
 ```
 
 You can preview the production build with `npm run preview`.
+
+## Roadmap
+
+ - [ ] Overhaul UI 
+    - [ ] Improve component layout
+    - [ ] Create better album rolling effect
+ - [ ] Allow multiple album lists
+ - [ ] Include more metadata in search
+ - [ ] Add temporary filtering by genre
+ - [ ] Artist sync
+    - [ ] Allow adding releases by artists (includes artist search)
+    - [ ] Filter by release type (album, EP, single, etc.)
+    - [ ] Auto-add new artist releases
+ - [ ] Spotify integration
+    - [ ] Server-sided storage
+    - [ ] Add picks to library
+    - [ ] Import releases from library
