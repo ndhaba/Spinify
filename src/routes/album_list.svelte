@@ -27,37 +27,37 @@
 
 <style>
   #root {
+    --album-side-length: 3rem;
     background-color: #222;
-    width: 500px;
-    height: 360px;
     border-radius: 8px;
+    height: calc(3rem + (6 * var(--album-side-length)))
   }
   #album-count {
     box-sizing: border-box;
-    color: #fff;
     display: flex;
-    font-size: 20px;
-    width: 100%;
-    height: 40px;
     align-items: center;
     justify-content: center;
+    color: #fff;
+    font-size: 1.25rem;
+    width: 100%;
+    height: 3rem;
     user-select: none;
   }
   #albums {
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: repeat(10, 50px);
+    grid-template-columns: repeat(10, var(--album-side-length));
+    max-height: calc(6 * var(--album-side-length));
     width: 100%;
-    max-height: 320px;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   .album {
     background: transparent;
     border: none;
     display: block;
     padding: 0px;
-    width: 50px;
-    height: 50px;
+    width: var(--album-side-length);
+    height: var(--album-side-length);
   }
   .album img {
     width: inherit;

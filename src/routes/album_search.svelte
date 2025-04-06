@@ -24,87 +24,95 @@
 <div id="root">
   <div id="search-wrapper">
     <div id="search-image-box">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="20px" height="20px">
-        <path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"/>
-      </svg>
+      <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10.089 10.973L13.934 14.817C13.9917 14.8754 14.0605 14.9218 14.1364 14.9534C14.2122 14.9851 14.2936 15.0013 14.3757 15.0012C14.4579 15.0011 14.5392 14.9847 14.6149 14.9529C14.6907 14.9211 14.7594 14.8746 14.817 14.816C14.875 14.7579 14.921 14.6889 14.9523 14.613C14.9836 14.5372 14.9997 14.4559 14.9996 14.3738C14.9995 14.2917 14.9833 14.2104 14.9518 14.1346C14.9203 14.0588 14.8741 13.99 14.816 13.932L10.983 10.1L10.989 9.67299C11.489 8.96674 11.8152 8.15249 11.9413 7.29642C12.0674 6.44034 11.9897 5.5666 11.7145 4.74621C11.4394 3.92582 10.9745 3.18192 10.3578 2.57498C9.74104 1.96804 8.98979 1.51519 8.16509 1.25322C7.34039 0.991255 6.46551 0.927572 5.61157 1.06735C4.75763 1.20712 3.94871 1.54641 3.25057 2.05764C2.55243 2.56887 1.98476 3.23761 1.59371 4.0095C1.20265 4.7814 0.999236 5.63468 1 6.49999C1 7.95868 1.57946 9.35763 2.61091 10.3891C3.64236 11.4205 5.04131 12 6.5 12C7.689 12 8.788 11.62 9.687 10.978L10.089 10.973ZM6.5 10.75C4.157 10.75 2.25 8.84299 2.25 6.49999C2.25 4.15699 4.157 2.24999 6.5 2.24999C8.843 2.24999 10.75 4.15699 10.75 6.49999C10.75 8.84299 8.843 10.75 6.5 10.75Z" />
+      </svg>        
     </div>
     <input type="text" placeholder="Search for an album" {onkeydown} bind:value={searchBarValue}>
   </div>
-    {#if results.length == 0}
-      <div id="search-message">
-        <span id="search-message-span">
-          {#if searchQuery == ""}
-            Use the search bar to search for an album
-          {:else}
-            No results found
-          {/if}
-        </span>
-        <div id="credits">
-          <img src="/lastfm.webp" alt="Last.fm" width="16" height="16" style="image-rendering: smooth; border-radius: 3px;">
-          <span>Music data from <a href="https://www.last.fm/" target="_blank">Last.fm</a></span>
-        </div>
+  {#if results.length == 0}
+    <div id="search-message">
+      <span id="search-message-span">
+        {#if searchQuery == ""}
+          Use the search bar to search for an album
+        {:else}
+          No results found
+        {/if}
+      </span>
+      <div id="credits">
+        <img src="/lastfm.webp" alt="Last.fm">
+        <span>Music data from <a href="https://www.last.fm/" target="_blank">Last.fm</a></span>
       </div>
-    {:else}
-      <div id="results">
-        {#each results as result}
-          <button class="result" title="{result.name}&#013;{result.artist}" onclick={() => list.add(result)}>
-            <img src={result.image} alt="{result.name} - {result.artist}">
-          </button>
-        {/each}
-      </div>
-    {/if}
+    </div>
+  {:else}
+    <div id="results">
+      {#each results as result}
+        <button class="result" title="{result.name}&#013;{result.artist}" onclick={() => list.add(result)}>
+          <img src={result.image} alt="{result.name} - {result.artist}">
+        </button>
+      {/each}
+    </div>
+  {/if}
 </div>
 
 <style>
+  /** Container */
   #root {
+    --image-side-length: 4rem;
+    align-self: start;
     background-color: #222;
     box-sizing: border-box;
-    width: 280px;
-    min-width: 280px;
-    height: 388px;
     border-radius: 8px 8px;
+    width: calc(4 * var(--image-side-length));
   }
+
+  /** Search Bar */
   #search-wrapper {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
+    height: 2.5rem;
+    min-height: 2.5rem;
     width: 100%;
-    height: 38px;
-    min-height: 38px;
-    padding: 2px;
   }
   #search-image-box {
     display: flex;
-    min-width: 32px;
+    min-width: 2.5rem;
     height: 100%;
     justify-content: center;
     align-items: center;
     fill: #fff;
   }
+  #search-image-box svg {
+    width: 1rem;
+    height: 1rem;
+  }
   #search-wrapper input {
     background: transparent;
     border: none;
     color: #fff;
+    font-family: Inter;
+    font-size: 1rem;
+    padding: 0px;
     width: 100%;
     outline: none;
   }
+
+  /** Album Results Grid */
   #results {
     display: grid;
-    grid-template-columns: repeat(4, 70px);
-    grid-template-rows: repeat(5, 70px);
+    grid-template-columns: repeat(4, var(--image-side-length));
+    grid-template-rows: repeat(5, var(--image-side-length));
     gap: 0px;
-    justify-content: center;
-    align-items: center;
-    width: 280px;
-    height: 350px;
+    width: 100%;
   }
   .result {
     background: transparent;
     border: none;
     display: block;
     padding: 0px;
-    width: 64px;
-    height: 64px;
+    width: var(--image-side-length);
+    height: var(--image-side-length);
   }
   .result img {
     width: inherit;
@@ -113,35 +121,55 @@
   .result:hover {
     cursor: pointer;
   }
+
+  /** Search Message */
   #search-message {
+    box-sizing: border-box;
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 100%;
-    height: calc(100% - 76px);
+    justify-content: center;
     flex-direction: column;
-    gap: 8px;
+    gap: 1rem;
+    width: 100%;
+    height: calc(5 * var(--image-side-length));
+    padding-bottom: 2.5rem;
   }
   #search-message span {
     color: #fff;
     display: inline-block;
-    font-size: 0.75rem;
+    font-size: 1rem;
     text-align: center;
     vertical-align: center;
     user-select: none;
   }
   #search-message-span {
     font-size: 1rem;
-    width: 75%;
+    margin: 0px 1rem;
   }
+
+  /** Credits */
   #credits {
     align-items: center;
     display: flex;
     flex-direction: row;
-    gap: 4px;
+    gap: 0.5rem;
     justify-content: center;
   }
+  #credits img {
+    border-radius: 0.25rem;
+    image-rendering: smooth;
+    height: 1.25rem;
+    width: 1.25rem;
+  }
+
+  /** Generic Links */
   a {
-    color: #8f8;
+    color: #6f6;
+  }
+  a:hover {
+    color: #bfb;
+  }
+  a:active {
+    color: #dfd;
   }
 </style>

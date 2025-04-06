@@ -17,6 +17,7 @@
   :global(body) {
     background-color: #000;
     box-sizing: border-box;
+    font-family: Inter;
     margin: 0px;
     padding: 20px;
     width: 100%;

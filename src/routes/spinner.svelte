@@ -7,7 +7,6 @@
   let selectedAlbumGone = $derived(selectedAlbum ? !list.contains(selectedAlbum) : true)
   let randomAlbum: Album | null = $state(null);
 
-
   function repeat(fn: Function, delay: number, iters: number): Promise<void> {
     return new Promise(function(resolve){
       let i = 0;
@@ -70,11 +69,13 @@
     background-color: rgb(29, 185, 84);
     border: none;
     border-radius: 6px;
-    font-size: 16px;
-    padding: 4px 8px;
+    font-family: Inter;
+    font-size: 1rem;
+    padding: 0.375rem 0.75rem;
   }
   button.big {
-    font-size: 20px;
+    font-size: 1.25rem;
+    padding: 0.5rem 1rem;
   }
   button:disabled {
     color: #444;
@@ -83,6 +84,9 @@
   button:hover:not(:disabled) {
     background-color: #60ce87;
     cursor: pointer;
+  }
+  button:active:not(:disabled) {
+    background-color: #a0e2b7;
   }
   span {
     color: #fff;
